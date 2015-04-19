@@ -1,0 +1,24 @@
+<head>
+	<title>xsarus_walkers</title>
+</head>
+
+<body>
+	<h1>Welcome to Meteor!</h1>
+
+	{{> maps}}
+</body>
+
+<template name="maps">
+	<div class="map-container">
+		{{> googleMap name="exampleMap" options=exampleMapOptions}}
+	</div>
+
+	<ul class="routes">
+		<li>
+			<a href="#" data-route="default">Standaard route</a>
+		</li>
+		<li>
+			<a href="#" data-route="long">Lange route</a>
+		</li>
+	</ul>
+</template>
