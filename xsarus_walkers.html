@@ -4,8 +4,12 @@
 
 <body>
 	<h1>Xsarus Walkers</h1>
-    {{> loginButtons}}
-	{{> maps}}
+    {{#if currentUser}}
+        {{> loginButtons}}
+        {{> maps}}
+    {{else}}
+        {{> loginButtons}}
+    {{/if}}
 </body>
 
 <template name="maps">
