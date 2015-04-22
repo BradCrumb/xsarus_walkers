@@ -1,13 +1,16 @@
 <head>
-	<title>xsarus_walkers</title>
+	<title>Xsarus Walkers</title>
 </head>
 
 <body>
-	<h1>Welcome to Meteor!</h1>
-
-	{{> maps}}
-
-	{{> maps2}}
+	<h1>Xsarus Walkers</h1>
+    {{#if currentUser}}
+        {{> loginButtons}}
+        {{> maps}}
+        {{> maps2}}
+    {{else}}
+        {{> loginButtons}}
+    {{/if}}
 </body>
 
 <template name="maps">
