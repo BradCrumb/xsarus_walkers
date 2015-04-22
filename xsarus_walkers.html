@@ -6,6 +6,8 @@
 	<h1>Welcome to Meteor!</h1>
 
 	{{> maps}}
+
+	{{> maps2}}
 </body>
 
 <template name="maps">
@@ -21,4 +23,10 @@
 			<a href="#" data-route="long">Lange route</a>
 		</li>
 	</ul>
+</template>
+
+<template name="maps2">
+	<div class="map-container">
+		{{> googleMap name="exampleMap2" options=exampleMap2Options}}
+	</div>
 </template>

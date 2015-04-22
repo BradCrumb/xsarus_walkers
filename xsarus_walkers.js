@@ -3,7 +3,7 @@ if (Meteor.isClient) {
 		GoogleMaps.load();
 	});
 
-	var xsarus, routes, directionsDisplay, directionsService;
+	var xsarus, routes, directionsDisplay, directionsService, directionsDisplay2, directionsService2;
 
 	Template.maps.helpers({
 		exampleMapOptions: function() {
@@ -102,6 +102,50 @@ if (Meteor.isClient) {
 			});
 		}
 	};
+
+
+	Template.maps2.onCreated(function() {
+		// We can use the `ready` callback to interact with the map API once the map is ready.
+		GoogleMaps.ready('exampleMap2', function(map) {
+			// Add a marker to the map once it's ready
+			var marker = new google.maps.Marker({
+				position: map.options.center,
+				map: map.instance
+			});
+
+			directionsDisplay2 = new google.maps.DirectionsRenderer(),
+			directionsService2 = new google.maps.DirectionsService();
+
+			directionsDisplay2.setMap(map.instance);
+
+			var date = new Date(),
+				request = {
+					origin:xsarus,
+					destination:xsarus,
+					travelMode: google.maps.TravelMode.WALKING
+				};
+			directionsService2.route(request, function(response, status) {
+				if (status == google.maps.DirectionsStatus.OK) {
+					console.log(response)
+					directionsDisplay2.setDirections(response);
+				}
+			});
+		});
+	});
+
+	Template.maps2.helpers({
+		exampleMap2Options: function() {
+			// Make sure the maps API has loaded
+			if (GoogleMaps.loaded()) {
+
+
+				return {
+					center: xsarus,
+					zoom: 18
+				};
+			}
+		}
+	});
 }
 
 if (Meteor.isServer) {
