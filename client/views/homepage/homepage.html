@@ -1,0 +1,13 @@
+<template name="homepage">
+    {{#contentFor "headerTitle"}}
+        <h1 class="title">Xsarus Walkers</h1>
+    {{/contentFor}}
+
+    {{#ionView}}
+        {{#ionContent}}
+            <p>Welkom bij de Xsarus Walkers app!</p>
+
+            <a href="{{pathFor 'maps'}}" class="button button-stable">{{> ionIcon icon="ios-arrow-forward"}} Lopen zuiger!</a>
+        {{/ionContent}}
+    {{/ionView}}
+</template>

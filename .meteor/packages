@@ -6,7 +6,13 @@
 
 meteor-platform
 dburles:google-maps
-less
 service-configuration
 accounts-ui
 accounts-password
+iron:router
+fourseven:scss
+meteoric:ionic-sass
+meteoric:ionicons-sass
+meteoric:ionic
+meteoric:autoform-ionic
+useraccounts:ionic
