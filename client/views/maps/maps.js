@@ -169,33 +169,33 @@ if (Meteor.isClient) {
 
             directionsDisplay2.setMap(map.instance);
 
-            var suffledWaypoints = _.shuffle(waypoints);
-
-            var date = new Date(),
-                request = {
-                    origin:xsarus,
-                    destination:xsarus,
-                    travelMode: google.maps.TravelMode.WALKING,
-                    waypoints: [
-                        suffledWaypoints[0],
-                        suffledWaypoints[1]
-                    ],
-                    optimizeWaypoints: true
-                };
-            directionsService2.route(request, function(response, status) {
-                if (status == google.maps.DirectionsStatus.OK) {
-                    directionsDisplay2.setDirections(response);
-                }
-            });
+            generateRoute();
         });
     });
+
+    function generateRoute() {
+        var suffledWaypoints = _.shuffle(waypoints),
+            request = {
+                origin:xsarus,
+                destination:xsarus,
+                travelMode: google.maps.TravelMode.WALKING,
+                waypoints: [
+                    suffledWaypoints[0],
+                    suffledWaypoints[1]
+                ],
+                optimizeWaypoints: true
+            };
+        directionsService2.route(request, function(response, status) {
+            if (status == google.maps.DirectionsStatus.OK) {
+                directionsDisplay2.setDirections(response);
+            }
+        });
+    }
 
     Template.maps_pinpoint.helpers({
         exampleMap2Options: function() {
             // Make sure the maps API has loaded
             if (GoogleMaps.loaded()) {
-
-
                 return {
                     center: xsarus,
                     zoom: 18
@@ -203,6 +203,14 @@ if (Meteor.isClient) {
             }
         }
     });
+
+    Template.maps_pinpoint.events = {
+        'click #GenerateNewRoute': function(ev) {
+            ev.preventDefault();
+
+            generateRoute();
+        }
+    };
 }
 
 if (Meteor.isServer) {
