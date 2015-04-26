@@ -3,7 +3,7 @@ if (Meteor.isClient) {
         GoogleMaps.load();
     });
 
-    var xsarus, routes, directionsDisplay, directionsService, directionsDisplay2, directionsService2;
+    var xsarus, routes, directionsDisplay, directionsService, directionsDisplay2, directionsService2, waypoints;
 
     Template.maps_route.helpers({
         exampleMapOptions: function() {
@@ -60,6 +60,57 @@ if (Meteor.isClient) {
                         }
                     ]
                 };
+
+                waypoints = [
+                    {
+                        location: new google.maps.LatLng(51.75388564, 4.17336477),
+                        stopover: false
+                    },
+                    {
+                        location: new google.maps.LatLng(51.75331446, 4.17096687),
+                        stopover: false
+                    },
+                    {
+                        location: new google.maps.LatLng(51.754583, 4.16985107),
+                        stopover: false
+                    },
+                    {
+                        location: new google.maps.LatLng(51.75563234, 4.1726513),
+                        stopover: false
+                    },
+                    {
+                        location: new google.maps.LatLng(51.75579837, 4.17387439),
+                        stopover: false
+                    },
+                    {
+                        location: new google.maps.LatLng(51.75563234, 4.17623473),
+                        stopover: false
+                    },
+                    {
+                        location: new google.maps.LatLng(51.7546627, 4.17679263),
+                        stopover: false
+                    },
+                    {
+                        location: new google.maps.LatLng(51.75437711, 4.17564465),
+                        stopover: false
+                    },
+                    {
+                        location: new google.maps.LatLng(51.75223097, 4.16598022),
+                        stopover: false
+                    },
+                    {
+                        location: new google.maps.LatLng(51.7528088, 4.16560471),
+                        stopover: false
+                    },
+                    {
+                        location: new google.maps.LatLng(51.75298979, 4.16713893),
+                        stopover: false
+                    },
+                    {
+                        location: new google.maps.LatLng(51.75356927, 4.16882336),
+                        stopover: false
+                    }
+                ];
                 // Map initialization options
                 return {
                     center: xsarus,
@@ -118,15 +169,21 @@ if (Meteor.isClient) {
 
             directionsDisplay2.setMap(map.instance);
 
+            var suffledWaypoints = _.shuffle(waypoints);
+
             var date = new Date(),
                 request = {
                     origin:xsarus,
                     destination:xsarus,
-                    travelMode: google.maps.TravelMode.WALKING
+                    travelMode: google.maps.TravelMode.WALKING,
+                    waypoints: [
+                        suffledWaypoints[0],
+                        suffledWaypoints[1]
+                    ],
+                    optimizeWaypoints: true
                 };
             directionsService2.route(request, function(response, status) {
                 if (status == google.maps.DirectionsStatus.OK) {
-                    console.log(response)
                     directionsDisplay2.setDirections(response);
                 }
             });
