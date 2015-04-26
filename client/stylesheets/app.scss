@@ -1,8 +1,13 @@
+@import 'app-variables';
+
 $loading-font-size: 22px;
+
+.bar-footer {
+  align: center;
+  text-align: center;
+  text-align-all: center;
+}
 
 @import '.meteor/local/build/programs/server/assets/packages/meteoric_ionic-sass/ionic';
 @import '.meteor/local/build/programs/server/assets/packages/meteoric_ionicons-sass/ionicons';
 
-.contact-detail {
-  background: $stable;
-}
